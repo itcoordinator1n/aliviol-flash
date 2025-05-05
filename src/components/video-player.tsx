@@ -81,7 +81,7 @@ export default function VideoPlayer() {
             {[...Array(5)].map((_, i) => (
               <motion.div
                 key={i}
-                className="absolute h-1 bg-white rounded-full"
+                className="absolute h-1  rounded-full"
                 style={{
                   width: `${80 - i * 10}px`,
                   top: `${i * 8}px`,

@@ -7,15 +7,18 @@ import CarouselWithEffects from "@/components/carousel-with-effects";
 import AliviolFlashSteps from "@/components/aliviol-flash-steps";
 import VideoPlayer from "@/components/video-player";
 import Link from "next/link";
+import AnimatedBackground from "@/components/animated-background";
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col">
+      
+
       {/* Hero Section */}
       <CarouselWithEffects />
-
+      
       {/* Product Description Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 ">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-black mb-4">
@@ -90,7 +93,7 @@ export default function Home() {
       </section>
 
       {/* Why Choose Aliviol Flash Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 ">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-black mb-4">
@@ -102,7 +105,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 max-w-4xl mx-auto">
+          <div className=" rounded-xl shadow-lg p-6 md:p-8 max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center p-4 border-b md:border-b-0 md:border-r border-gray-200">
                 <div className="text-red-600 font-bold text-lg mb-2">
@@ -159,26 +162,26 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="bg-white text-red-600 rounded-xl p-6 max-w-2xl mx-auto text-center shadow-lg">
+          <div className=" text-red-600 rounded-xl p-6 max-w-2xl mx-auto text-center shadow-lg">
             <h3 className="text-2xl md:text-3xl font-black">
               10 minutos bastan para volver a tu ritmo.
             </h3>
           </div>
           {/* 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center">
+            <div className="/10 backdrop-blur-sm rounded-lg p-6 text-center">
               <h3 className="font-bold text-xl mb-4">Reconocimiento</h3>
               <p>Que todos conozcan Aliviol Flash en su lanzamiento.</p>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center">
+            <div className="/10 backdrop-blur-sm rounded-lg p-6 text-center">
               <h3 className="font-bold text-xl mb-4">Posicionamiento</h3>
               <p>Asociarlo con rapidez y eficacia: 10 minutos.</p>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center">
+            <div className="/10 backdrop-blur-sm rounded-lg p-6 text-center">
               <h3 className="font-bold text-xl mb-4">Venta</h3>
               <p>Incentivar compra por medios tradicionales y digitales.</p>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center">
+            <div className="/10 backdrop-blur-sm rounded-lg p-6 text-center">
               <h3 className="font-bold text-xl mb-4">Recomendación</h3>
               <p>Impulsar que quienes lo prueban, lo recomienden.</p>
             </div>
@@ -198,7 +201,7 @@ export default function Home() {
             </p>
             <Button
               size="lg"
-              className="bg-white text-red-600 hover:bg-gray-100 font-bold text-lg"
+              className=" text-red-600 hover:bg-gray-100 font-bold text-lg"
             >
               Descubrí cómo funciona
             </Button>
@@ -227,7 +230,7 @@ export default function Home() {
         </div>
       </section>
       {/* Consumer Segments Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-transparent ">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-black mb-4">
@@ -354,7 +357,7 @@ export default function Home() {
 
       {/* The Problem We Solve Section */}
              {/* Campaign and Advertising Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 ">
         <div className="container mx-auto px-4">
           
           <AliviolFlashSteps></AliviolFlashSteps>
@@ -478,7 +481,7 @@ export default function Home() {
         </div>
       </section>
       {/* Where to Buy Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 ">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-black mb-4">
@@ -526,7 +529,7 @@ export default function Home() {
      
             
       {/* Testimonials Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 ">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-black mb-4">

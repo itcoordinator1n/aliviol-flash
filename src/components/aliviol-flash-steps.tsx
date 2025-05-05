@@ -97,7 +97,7 @@ export default function AliviolFlashSteps({
             ))}
           </div>
 
-          <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
+          <div className=" rounded-xl p-6 shadow-md border border-gray-100">
             <div className="flex items-center gap-3 mb-4">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-red-100 text-red-600 font-bold">
                 {steps[currentStep].id}

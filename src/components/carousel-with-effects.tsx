@@ -127,7 +127,7 @@ const getPrevIndex = () => (currentIndex - 1 + items.length) % items.length
 
       {/* Navigation Controls */}
       <button
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full backdrop-blur-sm transition-all"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 /20 hover:/40 text-white p-2 rounded-full backdrop-blur-sm transition-all"
         onClick={goToPrev}
         onMouseEnter={() => setIsHoveringPrev(true)}
         onMouseLeave={() => setIsHoveringPrev(false)}
@@ -136,7 +136,7 @@ const getPrevIndex = () => (currentIndex - 1 + items.length) % items.length
       </button>
 
       <button
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full backdrop-blur-sm transition-all"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 /20 hover:/40 text-white p-2 rounded-full backdrop-blur-sm transition-all"
         onClick={goToNext}
         onMouseEnter={() => setIsHoveringNext(true)}
         onMouseLeave={() => setIsHoveringNext(false)}
@@ -180,7 +180,7 @@ const getPrevIndex = () => (currentIndex - 1 + items.length) % items.length
             key={index}
             className={cn(
               "w-2 h-2 rounded-full transition-all",
-              index === currentIndex ? "bg-white w-4" : "bg-white/50",
+              index === currentIndex ? " w-4" : "/50",
             )}
             onClick={() => setCurrentIndex(index)}
           />
