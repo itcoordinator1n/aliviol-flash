@@ -72,21 +72,46 @@ const getNextIndex = () => (currentIndex + 1) % items.length
 const getPrevIndex = () => (currentIndex - 1 + items.length) % items.length
 
   return (
-    <div className="relative w-full overflow-hidden" ref={carouselRef}>
+    <div
+      ref={carouselRef}
+      style={{
+        width: "100%",
+        overflow: "hidden",
+        position: "relative",
+      }}
+    >
       {/* Main Carousel */}
-      <div className="relative h-[70vh] overflow-hidden">
+      <div
+        style={{
+          position: "relative",
+          height: "70vh",
+          overflow: "hidden",
+        }}
+      >
         {items.map((item, index) => (
           <div
             key={index}
-            className={cn(
-              "absolute inset-0 transition-opacity duration-1000 ease-in-out",
-              index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0",
-            )}
+            style={{
+              position: "absolute",
+              inset: 0,
+              transition: "opacity 1s ease-in-out",
+              opacity: index === currentIndex ? 1 : 0,
+              zIndex: index === currentIndex ? 10 : 0,
+            }}
           >
-            <div className="parallax-wrapper absolute inset-0 overflow-hidden">
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                overflow: "hidden",
+              }}
+            >
               <div
-                className="relative w-full h-[calc(100%+100px)] -mt-[50px]"
                 style={{
+                  position: "relative",
+                  width: "100%",
+                  height: "calc(100% + 100px)",
+                  marginTop: "-50px",
                   transform: `translateY(${scrollY * 0.15}px)`,
                 }}
               >
@@ -95,28 +120,59 @@ const getPrevIndex = () => (currentIndex - 1 + items.length) % items.length
                   alt={item.title}
                   fill
                   priority={index === currentIndex}
-                  className="object-cover"
+                  style={{ objectFit: "cover" }}
                   sizes="100vw"
                 />
               </div>
             </div>
-            <div className="absolute inset-0 bg-black/30" />
-            <div className="absolute bottom-0 left-0 w-full p-8 text-white">
+
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                backgroundColor: "rgba(0,0,0,0.3)",
+              }}
+            />
+
+            <div
+              style={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                width: "100%",
+                padding: "2rem",
+                color: "white",
+              }}
+            >
               <h2
-                className={cn(
-                  "text-4xl font-bold mb-2 transform transition-transform duration-1000 ease-out",
-                  index === currentIndex ? "translate-y-0 opacity-100" : "translate-y-full opacity-0",
-                )}
-                style={{ transitionDelay: "300ms" }}
+                style={{
+                  fontSize: "2.25rem",
+                  fontWeight: 700,
+                  marginBottom: "0.5rem",
+                  transform:
+                    index === currentIndex
+                      ? "translateY(0)"
+                      : "translateY(100%)",
+                  opacity: index === currentIndex ? 1 : 0,
+                  transition:
+                    "transform 1s ease-out, opacity 1s ease-out",
+                  transitionDelay: "300ms",
+                }}
               >
                 {item.title}
               </h2>
               <p
-                className={cn(
-                  "text-xl transform transition-transform duration-1000 ease-out",
-                  index === currentIndex ? "translate-y-0 opacity-100" : "translate-y-full opacity-0",
-                )}
-                style={{ transitionDelay: "500ms" }}
+                style={{
+                  fontSize: "1.25rem",
+                  transform:
+                    index === currentIndex
+                      ? "translateY(0)"
+                      : "translateY(100%)",
+                  opacity: index === currentIndex ? 1 : 0,
+                  transition:
+                    "transform 1s ease-out, opacity 1s ease-out",
+                  transitionDelay: "500ms",
+                }}
               >
                 {item.description}
               </p>
@@ -127,32 +183,73 @@ const getPrevIndex = () => (currentIndex - 1 + items.length) % items.length
 
       {/* Navigation Controls */}
       <button
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 /20 hover:/40 text-white p-2 rounded-full backdrop-blur-sm transition-all"
         onClick={goToPrev}
         onMouseEnter={() => setIsHoveringPrev(true)}
         onMouseLeave={() => setIsHoveringPrev(false)}
+        style={{
+          position: "absolute",
+          left: "1rem",
+          top: "50%",
+          transform: "translateY(-50%)",
+          zIndex: 20,
+          padding: "0.5rem",
+          borderRadius: "9999px",
+          backdropFilter: "blur(0.25rem)",
+          backgroundColor: "rgba(255,255,255,0.2)",
+          border: "none",
+          cursor: "pointer",
+          transition: "background-color 0.3s",
+        }}
       >
-        <ChevronLeft size={24} />
+        <ChevronLeft size={24} color="white" />
       </button>
 
       <button
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 /20 hover:/40 text-white p-2 rounded-full backdrop-blur-sm transition-all"
         onClick={goToNext}
         onMouseEnter={() => setIsHoveringNext(true)}
         onMouseLeave={() => setIsHoveringNext(false)}
+        style={{
+          position: "absolute",
+          right: "1rem",
+          top: "50%",
+          transform: "translateY(-50%)",
+          zIndex: 20,
+          padding: "0.5rem",
+          borderRadius: "9999px",
+          backdropFilter: "blur(0.25rem)",
+          backgroundColor: "rgba(255,255,255,0.2)",
+          border: "none",
+          cursor: "pointer",
+          transition: "background-color 0.3s",
+        }}
       >
-        <ChevronRight size={24} />
+        <ChevronRight size={24} color="white" />
       </button>
 
       {/* Preview on hover */}
       {isHoveringNext && (
-        <div className="absolute right-16 top-1/2 -translate-y-1/2 z-20 w-32 h-24 overflow-hidden rounded-md shadow-lg border-2 border-white/50 transition-all duration-300">
-          <div className="relative w-full h-full">
+        <div
+          style={{
+            position: "absolute",
+            right: "4rem",
+            top: "50%",
+            transform: "translateY(-50%)",
+            zIndex: 20,
+            width: "8rem",
+            height: "6rem",
+            overflow: "hidden",
+            borderRadius: "0.5rem",
+            boxShadow: "0 10px 15px rgba(0,0,0,0.3)",
+            border: "2px solid rgba(255,255,255,0.5)",
+            transition: "opacity 0.3s",
+          }}
+        >
+          <div style={{ position: "relative", width: "100%", height: "100%" }}>
             <Image
               src={items[getNextIndex()].image || "/placeholder.svg"}
               alt={`Preview of ${items[getNextIndex()].title}`}
               fill
-              className="object-cover"
+              style={{ objectFit: "cover" }}
               sizes="128px"
             />
           </div>
@@ -160,13 +257,28 @@ const getPrevIndex = () => (currentIndex - 1 + items.length) % items.length
       )}
 
       {isHoveringPrev && (
-        <div className="absolute left-16 top-1/2 -translate-y-1/2 z-20 w-32 h-24 overflow-hidden rounded-md shadow-lg border-2 border-white/50 transition-all duration-300">
-          <div className="relative w-full h-full">
+        <div
+          style={{
+            position: "absolute",
+            left: "4rem",
+            top: "50%",
+            transform: "translateY(-50%)",
+            zIndex: 20,
+            width: "8rem",
+            height: "6rem",
+            overflow: "hidden",
+            borderRadius: "0.5rem",
+            boxShadow: "0 10px 15px rgba(0,0,0,0.3)",
+            border: "2px solid rgba(255,255,255,0.5)",
+            transition: "opacity 0.3s",
+          }}
+        >
+          <div style={{ position: "relative", width: "100%", height: "100%" }}>
             <Image
               src={items[getPrevIndex()].image || "/placeholder.svg"}
               alt={`Preview of ${items[getPrevIndex()].title}`}
               fill
-              className="object-cover"
+              style={{ objectFit: "cover" }}
               sizes="128px"
             />
           </div>
@@ -174,15 +286,31 @@ const getPrevIndex = () => (currentIndex - 1 + items.length) % items.length
       )}
 
       {/* Indicators */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex space-x-2">
+      <div
+        style={{
+          position: "absolute",
+          bottom: "1rem",
+          left: "50%",
+          transform: "translateX(-50%)",
+          zIndex: 20,
+          display: "flex",
+          gap: "0.5rem",
+        }}
+      >
         {items.map((_, index) => (
           <button
             key={index}
-            className={cn(
-              "w-2 h-2 rounded-full transition-all",
-              index === currentIndex ? " w-4" : "/50",
-            )}
             onClick={() => setCurrentIndex(index)}
+            style={{
+              width: index === currentIndex ? "1rem" : "0.5rem",
+              height: "0.5rem",
+              borderRadius: "9999px",
+              backgroundColor: "white",
+              opacity: index === currentIndex ? 1 : 0.5,
+              border: "none",
+              cursor: "pointer",
+              transition: "all 0.3s",
+            }}
           />
         ))}
       </div>

@@ -2,27 +2,30 @@
 
 import { useEffect, useRef } from "react"
 
-export default function AnimatedBackground() {
+interface AnimatedBackgroundProps {
+  width: number
+  height: number
+}
+
+export default function AnimatedBackground({ width, height }: AnimatedBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
 
+    // Solo proceder si tenemos dimensiones válidas
+    if (width <= 0 || height <= 0) return
+
     const ctx = canvas.getContext("2d")
     if (!ctx) return
 
-    // Configurar el tamaño del canvas para que ocupe exactamente la pantalla
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-    }
-
-    resizeCanvas()
-    window.addEventListener("resize", resizeCanvas)
+    // Configurar el tamaño del canvas para que coincida con el contenedor
+    canvas.width = width
+    canvas.height = height
 
     // Color de fondo rojo intenso (como Flash)
-    const backgroundColor = "#DC0000"
+    const backgroundColor = "#B80000" // Rojo ligeramente más oscuro como base
 
     // Clase para los rayos (iconos)
     class LightningIcon {
@@ -252,7 +255,14 @@ export default function AnimatedBackground() {
       const backgroundColorPulse = `rgb(${r}, 0, 0)`
 
       // Limpiar el canvas
-      ctx.fillStyle = backgroundColorPulse
+      // Crear gradiente vertical (de arriba hacia abajo) con tonos más oscuros
+      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height)
+      gradient.addColorStop(0, "#700000") // Rojo mucho más oscuro arriba
+      gradient.addColorStop(0.5, "#900000") // Rojo oscuro en medio
+      gradient.addColorStop(1, "#A80000") // Rojo menos oscuro abajo
+
+      // Aplicar gradiente al fondo
+      ctx.fillStyle = gradient
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
       // Dibujar líneas de velocidad en el fondo
@@ -275,19 +285,29 @@ export default function AnimatedBackground() {
     }
 
     // Iniciar la animación
-    animate()
+    const animationId = requestAnimationFrame(animate)
 
     // Limpieza al desmontar
     return () => {
-      window.removeEventListener("resize", resizeCanvas)
+      cancelAnimationFrame(animationId)
     }
-  }, [])
+  }, [width, height]) // Dependencias: cuando cambian las dimensiones, se recrea el canvas
 
   return (
     <canvas
-      ref={canvasRef}
-      className="absolute top-0 left-0 w-screen h-screen"
-      style={{ backgroundColor: "#DC0000" }} // Color de respaldo
-    />
+    ref={canvasRef}
+    style={{
+      position: "fixed",    // Fijo en la ventana
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      backgroundColor: "#800000",
+      display: "block",
+      margin: 0,
+      padding: 0,
+      zIndex: -1,           // Detrás de todo
+    }}
+  />
   )
 }

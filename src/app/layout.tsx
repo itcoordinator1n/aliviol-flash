@@ -28,10 +28,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased relative w-full h-screen `}
       >
-        <AnimatedBackground />
         <div className="absolute z-10 w-full h-full flex flex-col">
           {children}
-
         </div>
       </body>
     </html>
