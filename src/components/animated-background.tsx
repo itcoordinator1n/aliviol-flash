@@ -12,17 +12,17 @@ export default function AnimatedBackground({ width, height }: AnimatedBackground
 
   useEffect(() => {
     const canvas = canvasRef.current
-    if (!canvas) return
+    if (!canvas!) return
 
     // Solo proceder si tenemos dimensiones válidas
     if (width <= 0 || height <= 0) return
 
-    const ctx = canvas.getContext("2d")
+    const ctx = canvas!.getContext("2d")
     if (!ctx) return
 
-    // Configurar el tamaño del canvas para que coincida con el contenedor
-    canvas.width = width
-    canvas.height = height
+    // Configurar el tamaño del canvas! para que coincida con el contenedor
+    canvas!.width = width
+    canvas!.height = height
 
     // Color de fondo rojo intenso (como Flash)
     const backgroundColor = "#B80000" // Rojo ligeramente más oscuro como base
@@ -35,13 +35,13 @@ export default function AnimatedBackground({ width, height }: AnimatedBackground
       angle: number
       targetAngle: number
       speed: number
-      targetX: number
-      targetY: number
-      opacity: number
+      targetX!: number
+      targetY!: number
+      opacity!: number
 
       constructor() {
-        this.x = Math.random() * canvas.width
-        this.y = Math.random() * canvas.height
+        this.x = Math.random() * canvas!.width
+        this.y = Math.random() * canvas!.height
         this.size = 20 + Math.random() * 25
         this.angle = Math.random() * Math.PI * 2
         this.targetAngle = this.angle
@@ -51,9 +51,9 @@ export default function AnimatedBackground({ width, height }: AnimatedBackground
       }
 
       setNewTarget() {
-        // Establecer un nuevo punto objetivo dentro del canvas
-        this.targetX = Math.random() * canvas.width
-        this.targetY = Math.random() * canvas.height
+        // Establecer un nuevo punto objetivo dentro del canvas!
+        this.targetX = Math.random() * canvas!.width
+        this.targetY = Math.random() * canvas!.height
         // Calcular el ángulo hacia el objetivo
         this.targetAngle = Math.atan2(this.targetY - this.y, this.targetX - this.x)
       }
@@ -80,12 +80,12 @@ export default function AnimatedBackground({ width, height }: AnimatedBackground
           this.setNewTarget()
         }
 
-        // Si sale del canvas, establecer un nuevo objetivo dentro del canvas
-        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+        // Si sale del canvas!, establecer un nuevo objetivo dentro del canvas!
+        if (this.x < 0 || this.x > canvas!.width || this.y < 0 || this.y > canvas!.height) {
           this.setNewTarget()
-          // Ajustar posición para que esté dentro del canvas
-          this.x = Math.max(0, Math.min(canvas.width, this.x))
-          this.y = Math.max(0, Math.min(canvas.height, this.y))
+          // Ajustar posición para que esté dentro del canvas!
+          this.x = Math.max(0, Math.min(canvas!.width, this.x))
+          this.y = Math.max(0, Math.min(canvas!.height, this.y))
         }
       }
 
@@ -135,13 +135,13 @@ export default function AnimatedBackground({ width, height }: AnimatedBackground
       speed: number
       angle: number
       targetAngle: number
-      targetX: number
-      targetY: number
+      targetX!: number
+      targetY!: number
       opacity: number
 
       constructor() {
-        this.x = Math.random() * canvas.width
-        this.y = Math.random() * canvas.height
+        this.x = Math.random() * canvas!.width
+        this.y = Math.random() * canvas!.height
         this.size = 2 + Math.random() * 4 // Puntos pequeños
         this.speed = 0.1 + Math.random() * 0.4 // Movimiento lento
         this.angle = Math.random() * Math.PI * 2
@@ -151,8 +151,8 @@ export default function AnimatedBackground({ width, height }: AnimatedBackground
       }
 
       setNewTarget() {
-        this.targetX = Math.random() * canvas.width
-        this.targetY = Math.random() * canvas.height
+        this.targetX = Math.random() * canvas!.width
+        this.targetY = Math.random() * canvas!.height
         this.targetAngle = Math.atan2(this.targetY - this.y, this.targetX - this.x)
       }
 
@@ -177,11 +177,11 @@ export default function AnimatedBackground({ width, height }: AnimatedBackground
           this.setNewTarget()
         }
 
-        // Si sale del canvas, establecer un nuevo objetivo dentro del canvas
-        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+        // Si sale del canvas!, establecer un nuevo objetivo dentro del canvas!
+        if (this.x < 0 || this.x > canvas!.width || this.y < 0 || this.y > canvas!.height) {
           this.setNewTarget()
-          this.x = Math.max(0, Math.min(canvas.width, this.x))
-          this.y = Math.max(0, Math.min(canvas.height, this.y))
+          this.x = Math.max(0, Math.min(canvas!.width, this.x))
+          this.y = Math.max(0, Math.min(canvas!.height, this.y))
         }
       }
 
@@ -213,9 +213,9 @@ export default function AnimatedBackground({ width, height }: AnimatedBackground
       ctx.lineWidth = 1
 
       for (let i = 0; i < lineCount; i++) {
-        const y = (canvas.height / lineCount) * i
+        const y = (canvas!.height / lineCount) * i
         const length = 50 + Math.random() * 150
-        const x = Math.random() * canvas.width
+        const x = Math.random() * canvas!.width
 
         ctx.beginPath()
         ctx.moveTo(x, y)
@@ -254,16 +254,16 @@ export default function AnimatedBackground({ width, height }: AnimatedBackground
       const r = 220 - Math.floor(pulseValue * 10)
       const backgroundColorPulse = `rgb(${r}, 0, 0)`
 
-      // Limpiar el canvas
+      // Limpiar el canvas!
       // Crear gradiente vertical (de arriba hacia abajo) con tonos más oscuros
-      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height)
+      const gradient = ctx.createLinearGradient(0, 0, 0, canvas!.height)
       gradient.addColorStop(0, "#700000") // Rojo mucho más oscuro arriba
       gradient.addColorStop(0.5, "#900000") // Rojo oscuro en medio
       gradient.addColorStop(1, "#A80000") // Rojo menos oscuro abajo
 
       // Aplicar gradiente al fondo
       ctx.fillStyle = gradient
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      ctx.fillRect(0, 0, canvas!.width, canvas!.height)
 
       // Dibujar líneas de velocidad en el fondo
       drawSpeedLines()
@@ -291,7 +291,7 @@ export default function AnimatedBackground({ width, height }: AnimatedBackground
     return () => {
       cancelAnimationFrame(animationId)
     }
-  }, [width, height]) // Dependencias: cuando cambian las dimensiones, se recrea el canvas
+  }, [width, height]) // Dependencias: cuando cambian las dimensiones, se recrea el canvas!
 
   return (
     <canvas
